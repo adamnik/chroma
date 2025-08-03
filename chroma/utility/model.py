@@ -106,7 +106,7 @@ def load_model(
         )
 
     # load model weights
-    params = torch.load(weights, map_location="cpu")
+    params = torch.load(weights, map_location="cpu", weights_only=False)
     model = model_class(**params["init_kwargs"]).to(device)
     missing_keys, unexpected_keys = model.load_state_dict(
         params["model_state_dict"], strict=strict
